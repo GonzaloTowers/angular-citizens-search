@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { CensusComponent } from './census/census.component';
 import { GnomeComponent } from './census/gnome/gnome.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { GnomeComponent } from './census/gnome/gnome.component';
     GnomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,12 @@
+div.card {
+    width: 80%;
+    margin: 20px auto;
+
+    div.card-header {
+        text-align: center;
+        .card-title {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

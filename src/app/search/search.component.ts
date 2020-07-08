@@ -12,4 +12,10 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  searchParams = '';
+
+  onSearchStart() {
+    alert(this.searchParams);
+  }
+
 }

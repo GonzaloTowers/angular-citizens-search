@@ -12,4 +12,6 @@ export class CensusComponent implements OnInit {
   ngOnInit() {
   }
 
+  results = [{name: 'Gnome 1', age: '25'},{name: 'Gnome 2', age: '20'}];
+
 }
