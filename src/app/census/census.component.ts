@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Search } from '../search-census.service';
+import { Gnome } from './gnome/gnome';
 
 @Component({
   selector: 'app-census',
@@ -7,11 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CensusComponent implements OnInit {
 
-  constructor() { }
+  //@Input() inhabitants: any;
+  results: Gnome[] = [];
+
+  constructor(private searchService: Search) { }
 
   ngOnInit() {
+    this.searchService.findAllInhabitants().subscribe(data => {
+      this.results = data.Brastlewark;
+    }),
+    error => {
+      console.log("Error: " + error);
+    }
   }
-
-  results = [{name: 'Gnome 1', age: '25'},{name: 'Gnome 2', age: '20'}];
 
 }
