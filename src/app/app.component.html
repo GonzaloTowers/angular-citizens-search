@@ -1,2 +1,2 @@
-<app-search></app-search>
-<app-census></app-census>
+<app-search (searchResults)="onSearchParams($event)"></app-search>
+<app-census [inhabitants]="results"></app-census>

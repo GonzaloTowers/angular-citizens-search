@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Search } from '../search-census.service';
+import { Gnome } from '../census/gnome/gnome';
 
 @Component({
   selector: 'app-search',
@@ -8,16 +9,25 @@ import { Search } from '../search-census.service';
 })
 export class SearchComponent implements OnInit {
 
-  //@Output() searchResults = new EventEmitter<any>();
+  @Output() searchResults = new EventEmitter<Gnome[]>();
 
-  constructor() { }
+  constructor(private searchService: Search) { }
 
   ngOnInit() {}
 
   searchParams = '';
 
-  onSearchStart() {
-    alert(this.searchParams);
+  onSearch() {
+    var results: Gnome[];
+    if (this.searchParams) {
+      results = this.searchService.getInhabitantByName(this.searchParams);
+    } else {
+      this.searchService.findAllInhabitants().subscribe(res => {
+        results = res.Brastlewark;
+      });
+    }
+
+    this.searchResults.emit(results);
   }
 
 }

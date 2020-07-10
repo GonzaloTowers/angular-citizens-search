@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Gnome } from './census/gnome/gnome';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Brastlewark';
 
-  public results: any;
+  public results: Gnome[];
 
-  searchEvent(event: any) {
-    this.results = event;
+  onSearchParams($event) {
+    this.results = $event;
   }
 
 }

@@ -9,7 +9,7 @@
             </div>
             <input type="text" class="form-control" [(ngModel)]="searchParams"/>
             <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button" (click)="onSearchStart()">Search</button>
+                <button class="btn btn-outline-primary" type="button" (click)="onSearch()">Search</button>
             </div>
         </div>
         <button class="btn btn-secondary" id="btn-filter" type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">Filters</button>
@@ -18,10 +18,8 @@
                 <div class="collapse" id="filterCollapse">
                     <hr class="mb-4"/>
                     <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="check1" value=""/>
-                            <label class="form-check-label" for="check1">Job</label>
-                        </div>
+                        <label for="nameSearch">By name</label>
+                        <input type="text" class="form-control" id="nameSearch" [(ngModel)]="nameParam"/>
                     </div>
                 </div>
             </div>
