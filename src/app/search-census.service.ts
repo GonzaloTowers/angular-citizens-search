@@ -1,30 +1,40 @@
 
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Gnome } from './census/gnome/gnome';
+import { Gnome } from './hall/census/gnome/gnome';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class Search {
 
     serviceUrl: string = 'https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json';
+    brastlewark: IBrastlewark;
     inhabitants: Gnome[] = [];
 
-    constructor(private http: HttpClient) {
-        this.http.get<IBrastlewark>(this.serviceUrl).subscribe(res => {
-            this.inhabitants = res.Brastlewark;
-        });
-    }
+    constructor(private http: HttpClient, private router: Router) {}
 
     findAllInhabitants(): Observable<IBrastlewark> {
+        if (this.brastlewark) {
+            return of(this.brastlewark);
+        }
         return this.http.get<IBrastlewark>(this.serviceUrl).pipe(
             catchError(this.handleError)
         );
     }
 
-    getInhabitantByParams(params: string): Gnome[] {
-        return
+    getGnome(id: number): Observable<Gnome> {
+        var subject = new Subject<Gnome>();
+        if (this.inhabitants.length === 0) {
+            this.findAllInhabitants().subscribe(data => {
+                this.inhabitants = data.Brastlewark;
+                subject.next(this.inhabitants.find(gnome => gnome.id === id));
+            });
+            return subject.asObservable();
+        } else {
+            return of(this.inhabitants.find(gnome => gnome.id === id));
+        }
     }
 
     getInhabitantByName(name: string): Gnome[] {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Search } from '../search-census.service';
+import { Search } from '../../search-census.service';
 import { Gnome } from '../census/gnome/gnome';
 
 @Component({

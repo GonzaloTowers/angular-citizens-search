@@ -1,0 +1,16 @@
+<div class="row text-center profile">
+    <div class="col mb-4">
+        <div class="card" *ngIf="gnome">
+            <img src="{{ gnome.thumbnail }}" class="card-img-top img-thumbnail" alt="{{ gnome.name }} profile">
+            <div class="card-body">
+                <h5 class="card-title">{{ gnome.name }}</h5>
+                <p class="card-text">Age: {{ gnome.age }}</p>
+                <p class="card-text">Weigth: {{ gnome.weight }}</p>
+                <p class="card-text">Height: {{ gnome.height }}</p>
+                <p class="card-text">Hair color: {{ gnome.hair_color }}</p>
+                <p class="card-text">Professions: {{ gnome.professions }}</p>
+                <p class="card-text">Friends: {{ gnome.friends }}</p>
+            </div>
+        </div>
+    </div>
+</div>
